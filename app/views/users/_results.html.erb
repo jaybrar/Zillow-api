@@ -1,4 +1,5 @@
 <div class = 'row'>
+	<div class = "container">
 	<div class="col s8">
 		<p>Enter Your Email to Receive Report</p>
 		<form action="/send" id="report" method="post">
@@ -6,60 +7,63 @@
 			<input type="email" name="email" required>
 			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 			<button class="btn waves-effect waves-light" type="submit" name="action">Get Report
-		  </button>
+			</button>
 		</form>
+	</div>
 	</div>
 </div>
 <div class = 'row'>
-	<div class="col s4">
-	<% results['response'].each do |key, value| %>
-	<% if key != 'annualAmortizationSchedule' && key != "monthlyAmortizationSchedule" %>
-	<p><%= key %>: <%= value %></p>
-	<% end %>
-	<% end %>
+	<div class = "container">
+	<div class="col s5">
+		<% results['response'].each do |key, value| %>
+		<% if key != 'annualAmortizationSchedule' && key != "monthlyAmortizationSchedule" %>
+		<p><%= key %>: <%= value %></p>
+		<% end %>
+		<% end %>
 	</div>
 
-	<div class="col s4">
-	<% if results['response'].has_key?('monthlyAmortizationSchedule') %>
-	<h3>MonthlyAmortizationSchedule</h3>
-	<table class="hoverable striped">
-		<tr>
-			<th>Period</th>
-			<th>Beginning Balance</th>
-			<th>Amount</th>
-			<th>Principal</th>
-			<th>Interest</th>
-			<th>Ending Balance</th>
-		</tr>
-		<% for i in 0...results['response']['monthlyAmortizationSchedule'].length %>
-		<tr>
-			<% results['response']['monthlyAmortizationSchedule'][i].each do |key, value| %>
-			<td><%= value %></td>
+	<div class="col s7">
+		<% if results['response'].has_key?('monthlyAmortizationSchedule') %>
+		<h4>MonthlyAmortizationSchedule</h4>
+		<table class="hoverable striped">
+			<tr>
+				<th>Period</th>
+				<th>Beginning Balance</th>
+				<th>Amount</th>
+				<th>Principal</th>
+				<th>Interest</th>
+				<th>Ending Balance</th>
+			</tr>
+			<% for i in 0...results['response']['monthlyAmortizationSchedule'].length %>
+			<tr>
+				<% results['response']['monthlyAmortizationSchedule'][i].each do |key, value| %>
+				<td><%= value %></td>
+				<% end %>
+			</tr>
 			<% end %>
-		</tr>
+		</table>
 		<% end %>
-	</table>
-	<% end %>
 
-	<% if results['response'].has_key?('annualAmortizationSchedule') %>
-	<h3>AnnualAmortizationSchedule</h3>
-	<table class="hoverable striped">
-		<tr>
-			<th>Period</th>
-			<th>Beginning Balance</th>
-			<th>Amount</th>
-			<th>Principal</th>
-			<th>Interest</th>
-			<th>Ending Balance</th>
-		</tr>
-		<% for i in 0...results['response']['annualAmortizationSchedule'].length %>
-		<tr>
-			<% results['response']['annualAmortizationSchedule'][i].each do |key, value| %>
-			<td><%= value %></td>
+		<% if results['response'].has_key?('annualAmortizationSchedule') %>
+		<h4>AnnualAmortizationSchedule</h4>
+		<table class="hoverable striped">
+			<tr>
+				<th>Period</th>
+				<th>Beginning Balance</th>
+				<th>Amount</th>
+				<th>Principal</th>
+				<th>Interest</th>
+				<th>Ending Balance</th>
+			</tr>
+			<% for i in 0...results['response']['annualAmortizationSchedule'].length %>
+			<tr>
+				<% results['response']['annualAmortizationSchedule'][i].each do |key, value| %>
+				<td><%= value %></td>
+				<% end %>
+			</tr>
 			<% end %>
-		</tr>
+		</table>
 		<% end %>
-	</table>
-	<% end %>
 	</div>
+</div>
 </div>

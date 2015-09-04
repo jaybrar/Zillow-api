@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	end
 
       def sends
-            Results.send_report(params[:email], $report)
+            Results.send_report(params[:email], $report).deliver_now
             json_message = {:message => "Thank you! Your Report Has Been Emailed To: #{params[:email]}"}
             render json: json_message
       end

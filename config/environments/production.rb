@@ -4,16 +4,16 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => "https://house-affordability.herokuapp.com/" }
+  config.action_mailer.default_url_options = { :host => "www.example.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
    :address              => "smtp.gmail.com",
    :port                 => 25,
-   :domain               => 'https://house-affordability.herokuapp.com/',
-   :user_name            => 'jaybrar79@gmail.com',
-   :password             => 'brar4463',
+   :domain               => 'www.example.com',
+   :user_name            => 'example@gmail.com',
+   :password             => 'password',
    :authentication       => "plain",
    :enable_starttls_auto => true
   }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zillow</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+
+    $('form').submit(function(){
+      $.post(
+        $(this).attr('action'),
+        $(this).serialize(),
+        function(data){
+          $('input').val("");
+	        $('#test').html(data);
+        }
+      );
+      return false;
+    });
+    $(document).on('submit', '#report', function(){
+      $.post(
+        $(this).attr('action'),
+        $(this).serialize(),
+        function(data){
+          $('input').val("");
+          Materialize.toast(data.message, 2000, 'green');
+        }
+      );
+      return false;
+    })
+  });
+
+  </script>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
